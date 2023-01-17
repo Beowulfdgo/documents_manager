@@ -42,7 +42,7 @@
     const pond = FilePond.create(inputElement);
     FilePond.setOptions({
         server: {
-            process: '/upload',
+            process: '/store',
             headers: {
                 'X-CSRF-TOKEN':'{{csrf_token()}}'
             }

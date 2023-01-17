@@ -23,7 +23,8 @@ Route::get('/', function () {
 Route::post('store',[UploadController::class,'store']);
 */
 Route::post('/dashboard/upload', [UploadController::class, 'store'])->name('Upload.store');
-
+Route::post('/tmp-upload',[UploadController::class,'tmpUpload']);
+Route::delete('/tmp-delete',[UploadController::class,'tmpDelete']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

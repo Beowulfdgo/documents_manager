@@ -19,18 +19,25 @@ class UploadController extends Controller
     public function store (Request $request) {
         if($request->hasFile('file')){
             $project_pdf = $request->file('file');
-           $filename = time() . '.' . $project_pdf->getClientOriginalExtension();
+           $filename = time() . '.' . $project_pdf->getClientOriginalName();
            //$folder =uniqid('file',true);
            //$project_pdf->storeAs('files/tmp'. $folder, $filename);
            $folder='uploads/tmp';
-           $path = $project_pdf->store($request->name.'/'.$folder);
+           //$path = $project_pdf->store($request->name.'/'.$folder, $filename);
+           $path = $project_pdf->storeAs('files/tmp/'. $request->name, $filename);
            Documents_uploads::create([
-                'path'=> $request->name.'/'.$folder,
+                'path'=> 'files/tmp/'. $request->name,
                 'name'=>$filename
             ]);
          return redirect('/')-> with('sucess','Post created');
          }
          return redirect('/')-> with('danger','please upload image');
+    }
+
+    public function tmpUpload (Request $request) {
+        $project_pdf = $request->file('file');
+        $filename = time() . '.' . $project_pdf->getClientOriginalName();
+        return $filename;
     }
 
 }
