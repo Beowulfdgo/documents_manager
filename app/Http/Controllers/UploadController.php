@@ -36,8 +36,14 @@ class UploadController extends Controller
 
     public function tmpUpload (Request $request) {
         $project_pdf = $request->file('file');
+        $folder =uniqid('file',true);
         $filename = time() . '.' . $project_pdf->getClientOriginalName();
-        return $filename;
+        $path = $project_pdf->storeAs('files/tmp/'. $folder, $filename);
+        TemporaryFile::create([
+          'folder'=> $folder,
+          'file'=> $filename
+        ]);
+        return $folder;
     }
 
 }
