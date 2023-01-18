@@ -38,11 +38,12 @@
     <script>
   document.addEventListener('DOMContentLoaded', function() {
     // Create FilePond object
-    const inputElement = document.querySelector('input[id="file"]');
+    const inputElement = document.querySelector('input[name="file"]');
     const pond = FilePond.create(inputElement);
     FilePond.setOptions({
         server: {
-            process: '/store',
+            process: '/tmp-upload',
+            revert:'/tmp-delete',
             headers: {
                 'X-CSRF-TOKEN':'{{csrf_token()}}'
             }
