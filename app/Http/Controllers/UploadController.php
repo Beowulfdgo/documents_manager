@@ -57,7 +57,12 @@ class UploadController extends Controller
         return $folder;
     }
     public function tmpDelete (Request $request) { 
-
+        $temp_file=TemporaryFile::where('folder',request()->getContent())->first();
+    if($temp_file){
+        Storage::deleteDirectory('files/tmp/'.$temp_file->folder);
+        $temp_file->delete();
+        return response('');
+    }
     }
 
 }
