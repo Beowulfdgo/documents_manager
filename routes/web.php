@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,15 @@ Route::post('store',[UploadController::class,'store']);
 Route::post('/dashboard/upload', [UploadController::class, 'store'])->name('Upload.store');
 Route::post('/tmp-upload',[UploadController::class,'tmpUpload']);
 Route::delete('/tmp-delete',[UploadController::class,'tmpDelete']);
+
+//okRoute::get('/dashboard/department/', function () {
+//    return view('layouts.departments.index', ['name' => 'James']);
+//});
+Route::get('/dashboard/department/',[DepartmentController::class,'index']);
+Route::get('/dashboard/department/create',[DepartmentController::class,'create']);
+Route::post('/department/upload', [DepartmentController::class, 'store'])->name('departments.store');
+
+Route::resource('department', DepartmentController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
