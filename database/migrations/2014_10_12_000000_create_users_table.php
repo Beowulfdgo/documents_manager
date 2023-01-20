@@ -19,8 +19,16 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+           // $table->unsignedBigInteger('departments_id');
             $table->rememberToken();
             $table->timestamps();
+
+
+           // $table->foreign('category_id')->references('id')->on('categories')->onDelete('CASCADE');
+            //$table->foreign('departments_id')->references('id')->on('departments')->onDelete('CASCADE');
+           // $table->foreignId('departments_id')->nullable()->constrained('departments')->onDelete('set null');
+           // $table->foreignId('departments_id')->constrained('departments')->onDelete('set null');
+ 
         });
     }
 
