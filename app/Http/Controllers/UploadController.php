@@ -65,4 +65,9 @@ class UploadController extends Controller
     }
     }
 
+    public function allFiles(Session $session) {
+        $temp_file=Documents_uploads::where('path',$request->file)->first();
+        return response( $temp_file);
+    }
+
 }
