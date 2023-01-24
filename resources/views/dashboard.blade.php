@@ -14,6 +14,27 @@
                   @csrf
                   <div class="row">
                   
+                    @auth
+                    {{ Auth::user()->name }}
+                    {{ Auth::user()->departments_id  }}
+                    {{ Auth::user()->id  }}
+                    // The user is login...
+                    <div> 
+                        <input type="text" id="users_id" name="name" value={{Auth::user()->id}}><br><br>
+                      </div>  
+
+                      <div> 
+                        <input type="text" id="users_id" name="name" value={{Auth::user()->id}}><br><br>
+                      </div>  
+                @endauth
+                
+                
+                @guest
+                
+                    // The user is not login...
+                
+                @endguest
+
                   <div> 
                     <input type="text" id="name" name="name"><br><br>
                   </div>  
