@@ -36,7 +36,11 @@
                 </div>
             @endif
 
-         
+            @guest
+
+            // The user is not login...
+        
+        @endguest
 
              
                 Aqui van los archivos.

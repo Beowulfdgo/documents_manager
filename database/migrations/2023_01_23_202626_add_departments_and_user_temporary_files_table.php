@@ -16,10 +16,12 @@ return new class extends Migration
         //
         Schema::table('temporary_files', function (Blueprint $table) {
             //
-            //  $table->unsignedBigInteger('departments_id');
-              //$table->foreignId('departments_id')->constrained('departments')->onDelete('set null');
+
+              $table->unsignedBigInteger('departments_id');
+              $table->foreign('departments_id')->references('id')->on('departments');
               $table->unsignedBigInteger('users_id');
               $table->foreign('users_id')->references('id')->on('users');
+              $table->unsignedBigInteger('status');
         });
     }
 
