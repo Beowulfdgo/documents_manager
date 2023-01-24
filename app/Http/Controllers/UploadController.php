@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Documents_uploads;
 use App\Models\TemporaryFile;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Auth;
 class UploadController extends Controller
 {
     //
@@ -47,13 +47,20 @@ class UploadController extends Controller
 
     public function tmpUpload (Request $request) {
         $project_pdf = $request->file('file');
-        $folder =uniqid('file',true);
+         $folder =uniqid('file',true);
         $filename = time() . '.' . $project_pdf->getClientOriginalName();
         $path = $project_pdf->storeAs('files/tmp/'. $folder, $filename);
+       // dd($request);
+        
+
         TemporaryFile::create([
-          'folder'=> $folder,
+            'users_id'=>Auth::user()->id,
+            'status'=>1,
+            'departments_id'=> Auth::user()->departments_id,
+            'folder'=> $folder,
           'file'=> $filename
-        ]);
+
+       ]);
         return $folder;
     }
     public function tmpDelete (Request $request) { 
