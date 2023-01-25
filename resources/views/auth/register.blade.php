@@ -21,8 +21,7 @@
             <x-input-label for="departments_id" :value="__('Departament')" />
             <select id="departments_id" name="departments_id">
                 @foreach($departments as $category)
-                <option value="{{$category->id}}" >"{{  str_replace(['"',"'"], "",$category->name)}}"</option>
-                @endforeach
+                <option value="{{$category->id}}" > {{$category->name}}</option> @endforeach
             </select>    
             </div>
 
