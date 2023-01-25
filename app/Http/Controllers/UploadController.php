@@ -24,7 +24,7 @@ class UploadController extends Controller
 
         //*if($request->hasFile('file')){
             if($temp_file){
-                Storage::copy('files/tmp/'.$temp_file->folder. '/'.$temp_file->file,'posts/'.$request->name. '/'.$temp_file->file);
+                Storage::copy('files/tmp/'.$temp_file->folder. '/'.$temp_file->file,'posts/'.Auth::user()->departments_id. '/'.$temp_file->file);
            //* $project_pdf = $request->file('file');
            //*$filename = time() . '.' . $project_pdf->getClientOriginalName();
            //$folder =uniqid('file',true);
@@ -35,14 +35,18 @@ class UploadController extends Controller
            Documents_uploads::create([
                 //*'path'=> 'files/tmp/'. $request->name,
                 //*'name'=>$filename
-                'path'=> 'posts/'. $request->name,
-                'name'=>$temp_file->file
+                'path'=> 'posts/'. $request->departments_id,
+                'name'=>$temp_file->file,
+                'users_id'=>Auth::user()->id,
+                'status'=>1,
+                'departments_id'=> Auth::user()->departments_id,
             ]);
             Storage::deleteDirectory('files/tmp/'.$temp_file->folder);
             $temp_file->delete();
-         return redirect('/')-> with('sucess','Post created');
+         return redirect('/dashboard/')-> with('sucess','Archivo upload');
          }
-         return redirect('/')-> with('danger','please upload image');
+         return redirect('/dashboard/')-> with('danger','please upload correct file');
+        //dd($request);
     }
 
     public function tmpUpload (Request $request) {
@@ -50,17 +54,15 @@ class UploadController extends Controller
          $folder =uniqid('file',true);
         $filename = time() . '.' . $project_pdf->getClientOriginalName();
         $path = $project_pdf->storeAs('files/tmp/'. $folder, $filename);
-       // dd($request);
-        
-
+       // dd($request);    
         TemporaryFile::create([
             'users_id'=>Auth::user()->id,
             'status'=>1,
             'departments_id'=> Auth::user()->departments_id,
             'folder'=> $folder,
           'file'=> $filename
-
        ]);
+      // dd($folder);
         return $folder;
     }
     public function tmpDelete (Request $request) { 

@@ -19,8 +19,10 @@
                     {{ Auth::user()->departments_id  }}
                     {{ Auth::user()->id  }}
                     // The user is login...
-  
-
+                    <!--  <div> 
+                        <input type="text" id="departments_id" name="departments_id" value={{Auth::user()->departments_id}}><br><br>
+                      </div>
+                    -->    
                 @endauth
                 
                 
