@@ -16,6 +16,16 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <!-- Depto Info -->
+        <div class="mt-4">
+            <x-input-label for="departments_id" :value="__('Departament')" />
+            <select id="departments_id" name="departments_id">
+                @foreach($departments as $category)
+                <option value="{{$category->id}}" >"{{  str_replace(['"',"'"], "",$category->name)}}"</option>
+                @endforeach
+            </select>    
+            </div>
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />

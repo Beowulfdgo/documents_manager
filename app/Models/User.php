@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Departments;
 
 class User extends Authenticatable
 {
@@ -21,7 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-         'departments_id'
+        'departments_id'
     ];
 
     /**
@@ -33,6 +34,12 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function departments()
+    {
+      return $this->hasOne(Departments::class,'departments_id','id');
+      //return $this->hasOne(Departments::class);
+    }
 
     /**
      * The attributes that should be cast.
