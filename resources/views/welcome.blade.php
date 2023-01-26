@@ -37,6 +37,7 @@
             @endif
 
             @guest
+             
 
             // The user is not login...
             <table class="table-auto">
@@ -53,12 +54,17 @@
                      <label for="">{{ $department->id}} </label>
                 </td>
                 <td>
-                    <label for="">{{ $department->name}} </label>   
-                    @foreach ($departments as $department )
+                    <label for="">{{ $department->name}} </label> 
+                    @php
+                   $documents = App\Http\Controllers\UploadController::allFiles($department->id);
+                    @endphp  
+                    @if (is_array($documents)|| is_object($documents))      
+                      @foreach ($documents as $document )
                     <td>
-                        <label for="">{{ $department->name}} </label>
+                        <label for="">{{ $document->name}} </label>
                     </td>      
                     @endforeach
+                    @endif
                 </td>   
             </tr>         
        @endforeach
