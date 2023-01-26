@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Departments;
+use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
 {
@@ -55,4 +56,8 @@ class DepartmentController extends Controller
         $department->delete();
         return redirect()->route('department.index');
     }
+    public function allDepartments() {
+        $departments = DB::table('departments')->get(); 
+        return view('welcome',['departments'=>$departments]); 
+           }
 }

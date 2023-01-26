@@ -16,9 +16,9 @@ use App\Http\Controllers\DepartmentController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[DepartmentController::class,'allDepartments']);
+//Route::get('/',[UploadController::class,'allFiles']);
+
 
 /*Route::post('/upload',[UploadController::class,'upload']);
 Route::post('store',[UploadController::class,'store']);

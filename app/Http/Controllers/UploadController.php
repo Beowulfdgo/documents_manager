@@ -7,6 +7,7 @@ use App\Models\Documents_uploads;
 use App\Models\TemporaryFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class UploadController extends Controller
 {
     //
@@ -74,9 +75,11 @@ class UploadController extends Controller
     }
     }
 
-    public function allFiles(Session $session) {
-        //$temp_file=Documents_uploads::where('path',$request->file)->first();
-        //return response( $temp_file);
+    public function allFiles($id) {
+        //return all documents $documents = DB::table('Documents_uploads')->get();
+        $documents=Documents_uploads::where('departments_id',$id)->first();
+        //dd($documents );
+        return $documents;
     }
 
 }

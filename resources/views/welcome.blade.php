@@ -39,11 +39,33 @@
             @guest
 
             // The user is not login...
-        
+            <table class="table-auto">
+                <thead>
+                    <tr>
+                      <th>id</th>
+                      <th>name</th>
+                      <th>path</th>
+                    </tr>
+                  </thead>
+       @foreach ($departments as $department)
+             <tr>
+                <td>
+                     <label for="">{{ $department->id}} </label>
+                </td>
+                <td>
+                    <label for="">{{ $department->name}} </label>   
+                    @foreach ($departments as $department )
+                    <td>
+                        <label for="">{{ $department->name}} </label>
+                    </td>      
+                    @endforeach
+                </td>   
+            </tr>         
+       @endforeach
+
+    </table>
         @endguest
 
-             
-                Aqui van los archivos.
 
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
