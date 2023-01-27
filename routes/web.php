@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DownloadsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,8 @@ use App\Http\Controllers\DepartmentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('{path}/{file}',[UploadController::class,'download'])->name('Upload.download');
 
 Route::get('/',[DepartmentController::class,'allDepartments']);
 //Route::get('/',[UploadController::class,'allFiles']);

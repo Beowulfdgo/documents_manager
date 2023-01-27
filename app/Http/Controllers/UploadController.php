@@ -8,9 +8,10 @@ use App\Models\TemporaryFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
 class UploadController extends Controller
 {
-    //
+
     public function upload (Request $request) {
         if($request->hasFile('file')){
             $project_pdf = $request->file('file');
@@ -81,5 +82,15 @@ class UploadController extends Controller
         //dd($documents );
         return $documents;
     }
+
+    public function download(Request $request)
+    {
+//no funciona
+        $path =$request->path;
+        $file_name= $request->file_name;
+        $file_path = public_path('posts/'.$path.'/'.$file_name);
+       return response()->download($file_path);
+       //return Response::download('posts/'.$path.'/', $file_name, ['Content-Type: application/zip']);
+     }
 
 }
