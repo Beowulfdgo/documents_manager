@@ -40,38 +40,40 @@
              
 
             // The user is not login...
-            <table class="table-auto">
-                <thead>
-                    <tr>
-                      <th>id</th>
-                      <th>name</th>
-                      <th>path</th>
-                    </tr>
-                  </thead>
-       @foreach ($departments as $department)
-             <tr>
-                <td>
-                     <label for="">{{ $department->id}} </label>
-                </td>
-                <td>
-                    <label for="">{{ $department->name}} </label> 
-                    @php
-                   $documents = App\Http\Controllers\UploadController::allFiles($department->id);
-                    @endphp  
-                    @if (is_array($documents)|| is_object($documents))      
-                      @foreach ($documents as $document )
-                    <td>
-                        <label for="">{{ $document->name}} </label>
-                    </td>      
-                    @endforeach
-                    @endif
-                </td>   
-            </tr>         
-       @endforeach
-
-    </table>
+  
         @endguest
 
+
+        <table class="table-auto">
+            <thead>
+                <tr>
+                  <th>id</th>
+                  <th>name</th>
+                  <th>path</th>
+                </tr>
+              </thead>
+   @foreach ($departments as $department)
+         <tr>
+            <td>
+                 <label for="">{{ $department->id}} </label>
+            </td>
+            <td>
+                <label for="">{{ $department->name}} </label> 
+                @php
+               $documents = App\Http\Controllers\UploadController::allFiles($department->id);
+                @endphp  
+                @if (is_array($documents)|| is_object($documents))      
+                  @foreach ($documents as $document )
+                <td>
+                    <a href="{{ $document->path.$document->departments_id."/".$document->name}}">{{ $document->name}}</a>              
+                </td>       
+                @endforeach
+                @endif
+            </td>   
+        </tr>         
+   @endforeach
+
+</table>
 
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
