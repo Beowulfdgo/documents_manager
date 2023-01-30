@@ -66,7 +66,7 @@
                   @foreach ($documents as $document )
                 <td>
                  <!--   <a href="{{ $document->path.$document->departments_id."/".$document->name}}">{{ $document->name}}</a>-->
-                    <a href="{{ route('Upload.download', ['path' => 'storage/'.$document->path.$document->departments_id, 'file' => $document->name]) }}">{{ $document->name}}</a>              
+                 <a href="{{ route('Upload.download', ['path' => 'storage/'.$document->path.$document->departments_id, 'file' => $document->name]) }}">{{ $document->name}}</a>              
                
                  </td>       
                 @endforeach

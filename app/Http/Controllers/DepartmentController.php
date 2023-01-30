@@ -60,4 +60,8 @@ class DepartmentController extends Controller
         $departments = DB::table('departments')->get(); 
         return view('welcome',['departments'=>$departments]); 
            }
+    public static function department($id) {
+            $department = Departments::find($id);
+            return $department; 
+    }       
 }
