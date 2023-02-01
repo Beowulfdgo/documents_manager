@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        @vite(['resources/css/app.css','resources/js/app.js'])
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -39,43 +40,72 @@
             @guest
              
 
-            // The user is not login...
+          <!--  // The user is not login...-->
   
         @endguest
 
-
-        <table class="table-auto">
-            <thead>
-                <tr>
-                  <th>id</th>
-                  <th>name</th>
-                  <th>path</th>
-                </tr>
-              </thead>
-   @foreach ($departments as $department)
-         <tr>
-            <td>
-                 <label for="">{{ $department->id}} </label>
-            </td>
-            <td>
-                <label for="">{{ $department->name}} </label> 
+ 
+       <div class="container"> 
+        <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="inline-flex items-center rounded-lg bg-blue-700 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+            Depto <svg class="ml-2 h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+   
+          <!-- Dropdown menu -->
+          <div id="dropdown" class="z-10 block w-44 divide-y divide-gray-100 rounded bg-white shadow dark:bg-gray-700" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(327px, 70px, 0px);">
+            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
+                @foreach ($departments as $department)       
+              <li>
+                <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $department->name}} </a>
                 @php
-               $documents = App\Http\Controllers\UploadController::allFiles($department->id);
-                @endphp  
-                @if (is_array($documents)|| is_object($documents))      
-                  @foreach ($documents as $document )
-                <td>
-                 <!--   <a href="{{ $document->path.$document->departments_id."/".$document->name}}">{{ $document->name}}</a>-->
-                 <a href="{{ route('Upload.download', ['path' => 'storage/'.$document->path.$document->departments_id, 'file' => $document->name]) }}">{{ $document->name}}</a>              
-               
-                 </td>       
-                @endforeach
-                @endif
-            </td>   
-        </tr>         
-   @endforeach
+                 $documents = App\Http\Controllers\UploadController::allFiles(1);
+                @endphp 
+              </li>
+              @endforeach             
+            </ul>
+            </div>
 
-</table>
+ 
+<div class="flex flex-col">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="overflow-hidden">
+          <table class="min-w-full text-center">
+            <thead class="border-b bg-gray-800">
+              <tr>
+                <!--<th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                  #
+                </th>-->
+                <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                  File
+                </th>
+              </tr>
+            </thead class="border-b">
+            <tbody>
+                @if (is_array($documents)|| is_object($documents))      
+                @foreach ($documents as $document )
+                <tr class="bg-white border-b">
+                    <!-- <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $document->id }}</td>-->
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                 <a href="{{ route('Upload.download', ['path' => 'storage/'.$document->path.$document->departments_id, 'file' => $document->name]) }}">{{ $document->name}}</a>              
+                </td>
+            </tr>
+                @endforeach
+                  @endif
+              </tbody>
+          </table>
+        </div>
+        {{ $documents->links() }}
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+</div>
+
+
+  <script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
 
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})

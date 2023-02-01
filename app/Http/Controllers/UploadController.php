@@ -78,7 +78,8 @@ class UploadController extends Controller
 
     public static function allFiles($id) {
         //return all documents $documents = DB::table('Documents_uploads')->get();
-        $documents=Documents_uploads::where('departments_id',$id)->get();
+        //ok $documents=Documents_uploads::where('departments_id',$id)->get();
+        $documents=Documents_uploads::where('departments_id',$id)->simplePaginate(3);
         //dd($documents );
         return $documents;
     }

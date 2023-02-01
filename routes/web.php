@@ -17,6 +17,7 @@ use App\Http\Controllers\DownloadsController;
 |
 */
 
+
 Route::get('{path}/{file}',[UploadController::class,'download'])->name('Upload.download');
 
 Route::get('/',[DepartmentController::class,'allDepartments']);
