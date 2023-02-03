@@ -18,4 +18,9 @@ class Departments extends Model
       //return $this->hasOne(Departments::class,'departments_id','id');
       return $this->belongsTo(User::class);
     }
+
+    public function departments()
+    {
+        return $this->belongsToMany(Department::class, 'department_document');
+    }
 }

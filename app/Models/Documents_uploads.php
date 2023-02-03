@@ -9,4 +9,8 @@ class Documents_uploads extends Model
 {
     use HasFactory;
     protected $fillable = ['name','path','users_id','status','departments_id'];
+    public function documents()
+    {
+        return $this->belongsToMany(Document::class, 'department_document');
+    }
 }
