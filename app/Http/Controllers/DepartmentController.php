@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Departments;
+use App\Models\Documents_uploads;
 use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
 {
     //
+
+    
     public function index()
     {
+        
         $departments = Departments::all();
         return view('layouts.departments.index', compact('departments'));
     }
@@ -57,11 +61,22 @@ class DepartmentController extends Controller
         return redirect()->route('department.index');
     }
     public function allDepartments() {
+        //$documents = \App\Models\documents_uploads::with('departments')->get();
+        $documents= Documents_uploads::find(1);
+        //dd($documents->departments);
+        //$documents->departments;
         $departments = DB::table('departments')->get(); 
-        return view('welcome',['departments'=>$departments]); 
+        return view('welcome',['departments'=>$departments,'documents'=>$documents]); 
            }
     public static function department($id) {
             $department = Departments::find($id);
             return $department; 
-    }       
+    }  
+    
+    public static function documentsDepartment() {
+        $documents= Documents_uploads::find(1);
+        //dd($documents->departments);
+        $documents->departments;
+        return $documents; 
+}  
 }

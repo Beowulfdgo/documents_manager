@@ -40,7 +40,13 @@ class User extends Authenticatable
       return $this->hasOne(Departments::class,'departments_id','id');
       //return $this->hasOne(Departments::class);
     }
-
+    
+    public function documentsUser()
+    {
+      return $this->hasMany(Documents_uploads::class);
+      //return $this->hasOne(Departments::class);
+    }
+     
     /**
      * The attributes that should be cast.
      *
