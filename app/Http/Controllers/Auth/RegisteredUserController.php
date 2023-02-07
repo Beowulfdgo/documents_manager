@@ -23,7 +23,7 @@ class RegisteredUserController extends Controller
     public function create(): View
     {   
         //$departments = Departments::all();
-        $departments = DB::table('Departments')->get();
+        $departments = DB::table('departments')->get();
         //dd($departments);
         return view('auth.register',['departments'=>$departments]);
     }

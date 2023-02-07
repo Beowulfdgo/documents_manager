@@ -35,9 +35,23 @@
                 @php   
                 $department = App\Http\Controllers\DepartmentController::department(Auth::user()->departments_id);
                 @endphp 
-                <tr>
-                   <td>
-                       <label for="">Departament {{ $department->name}} </label> 
+
+                <div class="flex flex-col">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                  <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
+                    <div class="overflow-hidden">
+                      <table class="min-w-full text-center">
+                        <thead class="border-b bg-gray-800">
+                          <tr>
+                            <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                              File
+                            </th>
+
+                          </tr>
+                        </thead class="border-b">
+                        <tbody>
+                        <tr>    
+                        <label for="">Departament {{ $department->name}} </label> 
                        @php
                       $documents = App\Http\Controllers\UploadController::allFiles($department->id);
                        @endphp  
@@ -45,21 +59,27 @@
                          @foreach ($documents as $document )
                        <td>
                         <!--   <a href="{{ $document->path.$document->departments_id."/".$document->name}}">{{ $document->name}}</a>-->
-                        <br>
                         <a href="{{ route('Upload.download', ['path' => 'storage/'.$document->path.$document->departments_id, 'file' => $document->name]) }}">{{ $document->name}}</a>              
+                      
+                       </td> 
 
-                        </td>       
+                        <!--                          
+                                         <div class="btn-group">
+                                         <a href="{{URL::to('/file-delete/'.$document->id)}}" >Delete</a>
+                                        </div>
+                        -->
+
+                        </tr>     
                        @endforeach
                        @endif
-                   </td>   
-               </tr>         
+                          </tbody>
+                      </table>
+                    </div>
+                    {{ $documents->links() }}
+                  </div>
+                </div>
+              </div>
 
-       
-       </table>
-
-                  <div>
-                 <x-input-label for="name" value="File" />
-                 </div> 
 
                  <div class="col-md-6">
                     <input type="file" name="file" class="form-control">
@@ -68,6 +88,7 @@
                 {{ __('Upload') }}
                  </x-primary-button>   
                 </div>
+
                 </form>   
                 </div>
             </div>

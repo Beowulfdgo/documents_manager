@@ -22,6 +22,7 @@ class UserTableSeeder extends Seeder
         $user1->name="Jose Antonio  Flores Lara";
         $user1->email="antonioflores30@hotmail.com";
         $user1->password=bcrypt("mio12345678");
+        $user1->ldap=(1);
         //$user1->departments_id(1); $faker->randomElement($coursesIDs)
         $user1->departments_id=1;
         $user1->save();
@@ -30,6 +31,7 @@ class UserTableSeeder extends Seeder
         $user1->name="Jose Armando";
         $user1->email="antonioflores30@gmail.com";
         $user1->password=bcrypt("mio12345678");
+        $user1->ldap=(0);
         //$user1->departments_id(1); $faker->randomElement($coursesIDs)
         $user1->departments_id=3;
         $user1->save();
