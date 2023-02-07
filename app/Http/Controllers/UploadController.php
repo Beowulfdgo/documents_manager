@@ -84,7 +84,7 @@ class UploadController extends Controller
         return $documents;
     }
 
-    public function download(Request $request)
+    public static function download(Request $request)
     {
 //no funciona
         $path =$request->path;
