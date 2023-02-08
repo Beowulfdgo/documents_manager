@@ -61,12 +61,19 @@ class DepartmentController extends Controller
         return redirect()->route('department.index');
     }
     public function allDepartments() {
-        //$documents = \App\Models\documents_uploads::with('departments')->get();
-        $documents= Documents_uploads::find(1);
-        //dd($documents->departments);
+        
+        //model
+        $documentsbydepartment = \App\Models\documents_uploads::has('departments')->simplePaginate(3);
+        
+        //$documentsbydepartment= Documents_uploads::find(1);
+        //dd($documentsbydepartment);
         //$documents->departments;
-        $departments = DB::table('departments')->get(); 
-        return view('welcome',['departments'=>$departments,'documents'=>$documents]); 
+        $departments = \App\Models\departments::has('Documents_uploads')->get(); 
+        //$documents = \App\Models\documents_uploads::with('departments')->get();
+
+
+
+        return view('welcome',['departments'=>$departments,'documentsbydepartment'=>$documentsbydepartment]); 
            }
     public static function department($id) {
             $department = Departments::find($id);

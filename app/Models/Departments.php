@@ -32,7 +32,7 @@ class Departments extends Model
     //    return $this->belongsToMany(Department::class, 'department_document');
     //}
 
-    public function documents_dep() {
+    public function documents_uploads() {
       return $this->hasMany(Documents_uploads::class);
   }
 

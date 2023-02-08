@@ -43,16 +43,14 @@
           <!--  // The user is not login...-->
   
         @endguest
-
-  
-       <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select an option</label>
-        <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option selected>Choose a department</option>
+       <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select an option end</label>
+        <select id="myselect" name="myselect" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             @foreach ($departments as $department)  
-          <option value={{ $department->id }}  >{{ $department->name }}</option>
+          <option value="{{ $department->id }}" >{{ $department->name }}</option>
           @endforeach   
         </select>
-  
+        <div id="token">@if(isset($token)){{ $token }} }@endif  </div>
+        <p>El sexo seleccionado es: <strong>@if(isset($valor)){{ $valor }}@endif</strong></p>
 
        <div class="container"> 
         <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="inline-flex items-center rounded-lg bg-blue-700 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
@@ -66,7 +64,7 @@
               <li>
                 <g href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $department->name}} </g>
                 @php
-                 $documents = App\Http\Controllers\UploadController::allFiles(1);
+                // $documents = App\Http\Controllers\UploadController::allFiles(1);
                 @endphp 
               </li>
               @endforeach             
@@ -86,8 +84,8 @@
                           </tr>
                         </thead class="border-b">
                         <tbody>
-                            @if (is_array($documents)|| is_object($documents))      
-                            @foreach ($documents as $document )
+                            @if (is_array($documentsbydepartment)|| is_object($documentsbydepartment))      
+                            @foreach ($documentsbydepartment as $document )
                             <tr class="bg-white border-b">
                                 <!-- <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $document->id }}</td>-->
                           <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
@@ -99,7 +97,7 @@
                           </tbody>
                       </table>
                     </div>
-                    {{ $documents->links() }}
+                    {{ $documentsbydepartment->links() }}
                   </div>
                 </div>
               </div>
@@ -109,6 +107,19 @@
 </div>
 </div>
 </div>
+
+
+
+<script>
+    document.getElementById("myselect").addEventListener("change", function() {
+      var valor = this.value;
+      console.log(valor);
+      //const token = document.querySelector('div[id=token]').textContent
+      // Pasamos la variable de JavaScript a Blade
+      window.blade = window.blade || {};
+    window.blade.valor = valor;
+    });
+  </script>
 <script>
 function clickOrigin(e){
     var target = e.target;
