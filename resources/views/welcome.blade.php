@@ -45,7 +45,8 @@
         @endguest
        <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select an option end</label>
         <select id="myselect" name="myselect" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            @foreach ($departments as $department)  
+          <option value="1" >Select a Department</option>
+          @foreach ($departments as $department)  
           <option value="{{ $department->id }}" >{{ $department->name }}</option>
           @endforeach   
         </select>
@@ -64,7 +65,8 @@
               <li>
                 <g href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $department->name}} </g>
                 @php
-                // $documents = App\Http\Controllers\UploadController::allFiles(1);
+                //$documents = App\Http\Controllers\UploadController::allFiles($valor);
+              
                 @endphp 
               </li>
               @endforeach             
@@ -120,6 +122,22 @@
     window.blade.valor = valor;
     });
   </script>
+
+<script>
+  document.getElementById("myselect").addEventListener("change", function() {
+    var valor = this.value;
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/allfilesbyid/"+valor, true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+      if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        console.log(this.responseText);
+      }
+    };
+    xhr.send("/" + encodeURIComponent(valor));
+  });
+</script>
 <script>
 function clickOrigin(e){
     var target = e.target;

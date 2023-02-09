@@ -17,10 +17,11 @@ use App\Http\Controllers\DownloadsController;
 |
 */
 
+Route::get('/download/{path}/{file}',[UploadController::class,'download'])->name('Upload.download');
 
-Route::get('{path}/{file}',[UploadController::class,'download'])->name('Upload.download');
 
 Route::get('/',[DepartmentController::class,'allDepartments']);
+Route::get('/allfilesbyid/{id}',[UploadController::class,'allFilesbyid'])->name('Upload.allFilesbyid');
 //Route::get('/',[UploadController::class,'allFiles']);
 
 

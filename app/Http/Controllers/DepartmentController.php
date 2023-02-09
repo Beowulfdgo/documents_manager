@@ -63,12 +63,12 @@ class DepartmentController extends Controller
     public function allDepartments() {
         
         //model
-        $documentsbydepartment = \App\Models\documents_uploads::has('departments')->simplePaginate(3);
+        $documentsbydepartment = Documents_uploads::has('departments')->simplePaginate(3);
         
         //$documentsbydepartment= Documents_uploads::find(1);
         //dd($documentsbydepartment);
         //$documents->departments;
-        $departments = \App\Models\departments::has('Documents_uploads')->get(); 
+        $departments = Departments::has('Documents_uploads')->get(); 
         //$documents = \App\Models\documents_uploads::with('departments')->get();
 
 
