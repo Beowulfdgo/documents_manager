@@ -43,16 +43,16 @@
           <!--  // The user is not login...-->
   
         @endguest
-       <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select an option end</label>
+
+
+
         <select id="myselect" name="myselect" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           <option value="1" >Select a Department</option>
           @foreach ($departments as $department)  
           <option value="{{ $department->id }}" >{{ $department->name }}</option>
           @endforeach   
         </select>
-        <div id="token">@if(isset($token)){{ $token }} }@endif  </div>
-        <p>El sexo seleccionado es: <strong>@if(isset($valor)){{ $valor }}@endif</strong></p>
-
+      
        <div class="container"> 
         <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="inline-flex items-center rounded-lg bg-blue-700 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
             Depto <svg class="ml-2 h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -73,11 +73,12 @@
             </ul>
             </div>
 
+
             <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="overflow-hidden">
-                      <table class="min-w-full text-center">
+                      <table  class="min-w-full text-center">
                         <thead class="border-b bg-gray-800">
                           <tr>
                             <th scope="col" class="text-sm font-medium text-white px-6 py-4">
@@ -85,25 +86,20 @@
                             </th>
                           </tr>
                         </thead class="border-b">
-                        <tbody>
-                            @if (is_array($documentsbydepartment)|| is_object($documentsbydepartment))      
-                            @foreach ($documentsbydepartment as $document )
-                            <tr class="bg-white border-b">
-                                <!-- <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $document->id }}</td>-->
-                          <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                             <b href="{{ route('Upload.download', ['path' => 'storage/'.$document->path.$document->departments_id, 'file' => $document->name]) }}">{{ $document->name}}</b>              
-                            </td>
-                        </tr>
-                            @endforeach
-                              @endif
-                          </tbody>
+                        <tbody id="resultados-documentos">
+                         
+                        </tbody>
                       </table>
                     </div>
-                    {{ $documentsbydepartment->links() }}
+
+      <input type="button" value="Add Bottom" onclick="addRow()"/>
+      <input type="button" value="Add Top" onclick="addRow()"/>
+                   <!-- Botton pag -->
                   </div>
                 </div>
               </div>
 
+           
 
 </div>
 </div>
@@ -132,7 +128,15 @@
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() {
       if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-        console.log(this.responseText);
+        //console.log(this.responseText);
+        var res = this.responseText;
+        var obj = JSON.parse(res);
+        for (x of obj) {
+            //console.log(x.id + ' ' + x.name);
+            document.getElementById("resultados-documentos").innerHTML +="<tr class='bg-white border-b'> <td class='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'>"+x.name+"</td></tr>";
+         }
+
+        //document.getElementById("add_to_me").innerHTML +=obj[1].name;
       }
     };
     xhr.send("/" + encodeURIComponent(valor));
