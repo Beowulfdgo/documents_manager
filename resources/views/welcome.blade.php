@@ -92,8 +92,8 @@
                       </table>
                     </div>
 
-      <input type="button" value="Add Bottom" onclick="addRow()"/>
-      <input type="button" value="Add Top" onclick="addRow()"/>
+      <div id="leftbutton"> </div>
+      <div id="rigthbutton"> </div>
                    <!-- Botton pag -->
                   </div>
                 </div>
@@ -128,19 +128,57 @@
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() {
       if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-        //console.log(this.responseText);
+        console.log(this.responseText);
         var res = this.responseText;
         var obj = JSON.parse(res);
-        for (x of obj) {
+        document.getElementById("resultados-documentos").innerHTML = "";
+        document.getElementById("leftbutton").innerHTML= "";
+        document.getElementById("rigthbutton").innerHTML = "";
+        for (x of obj.data) {
             //console.log(x.id + ' ' + x.name);
             document.getElementById("resultados-documentos").innerHTML +="<tr class='bg-white border-b'> <td class='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'>"+x.name+"</td></tr>";
          }
+         document.getElementById("leftbutton").innerHTML += "<button type='button' onclick='allfilesbyid(" +'"'+ obj.first_page_url +'"'+ ")' >First Page</button>";
+         if ( obj.next_page_url == null)
+         document.getElementById("rigthbutton").innerHTML = "";
+          else 
+          document.getElementById("rigthbutton").innerHTML += "<button type='button' onclick='allfilesbyid(" +'"'+ obj.next_page_url +'"'+ ")' >Next Page</button>";
+         }
+    };
+    xhr.send("/" + encodeURIComponent(valor));
+  });
+</script>
+<script>
+  function allfilesbyid(valor){       
+    var xhr = new XMLHttpRequest();
+    console.log("Here"+valor);
+    xhr.open("GET", valor, true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+      if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        console.log(this.responseText);
+        var res = this.responseText;
+        var obj = JSON.parse(res);
+        //document.getElementById("resultados-documentos").innerHTML +="<tr class='bg-white border-b'> <td class='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'>""</td></tr>";
+        document.getElementById("resultados-documentos").innerHTML = "";
+        document.getElementById("leftbutton").innerHTML= "";
+        document.getElementById("rigthbutton").innerHTML = "";
+        for (x of obj.data) {
+            //console.log(x.id + ' ' + x.name);
+            document.getElementById("resultados-documentos").innerHTML +="<tr class='bg-white border-b'> <td class='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'>"+x.name+"</td></tr>";
+         }
+         document.getElementById("leftbutton").innerHTML += "<button type='button' onclick='allfilesbyid(" +'"'+ obj.first_page_url +'"'+ ")' >First Page</button>";
+         if ( obj.next_page_url == null)
+         document.getElementById("rigthbutton").innerHTML = "";
+          else 
+          document.getElementById("rigthbutton").innerHTML += "<button type='button' onclick='allfilesbyid(" +'"'+ obj.next_page_url +'"'+ ")' >Next Page</button>";
+       
 
         //document.getElementById("add_to_me").innerHTML +=obj[1].name;
       }
     };
     xhr.send("/" + encodeURIComponent(valor));
-  });
+  }
 </script>
 <script>
 function clickOrigin(e){
