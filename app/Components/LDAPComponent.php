@@ -5,7 +5,7 @@ namespace App\Components;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 
-class LdapAuth
+class  LDAPComponent
 {
     private $ldapServer;
     private $ldapPort;

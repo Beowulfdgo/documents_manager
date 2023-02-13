@@ -8,9 +8,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use App\Components\LDAPComponent;
+
 
 class LoginRequest extends FormRequest
-{
+{ 
+   
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -38,7 +41,8 @@ class LoginRequest extends FormRequest
      * @throws \Illuminate\Validation\ValidationException
      */
     public function authenticate(): void
-    {
+    {   
+  
         $this->ensureIsNotRateLimited();
 
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
@@ -48,6 +52,12 @@ class LoginRequest extends FormRequest
                 'email' => trans('auth.failed'),
             ]);
         }
+        
+             //dd("Here");
+       //ldap connection
+       $ldapConnection = new LDAPComponent();
+       //dd(Auth::user());
+      $ldapConnection->authenticate(Auth::user()->guid,Auth::user()->password);
 
         RateLimiter::clear($this->throttleKey());
     }
