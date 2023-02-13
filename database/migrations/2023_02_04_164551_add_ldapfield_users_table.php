@@ -20,6 +20,9 @@ return new class extends Migration
               //$table->foreignId('departments_id')->constrained('departments')->onDelete('set null');
               //local 0 , ldap 1
               $table->unsignedBigInteger('ldap');
+              $table->string('guid')->nullable();
+              $table->string('domain')->nullable();              
+
               });
     }
 
