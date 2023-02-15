@@ -53,12 +53,15 @@ class LoginRequest extends FormRequest
             ]);
         }
         
-             //dd("Here");
+      //dd("Here");
        //ldap connection
        $ldapConnection = new LDAPComponent();
-       //dd(Auth::user());
-      $ldapConnection->authenticate(Auth::user()->guid,Auth::user()->password);
-
+       //pasar en sh o obtener el archivo de get dd(Auth::user()->password);
+      if($ldapConnection->authenticate(Auth::user()->guid,'password'))
+       {
+       dd('sucess');
+       }
+     //$ldapConnection->authenticate(Auth::user()->guid,'password');
         RateLimiter::clear($this->throttleKey());
     }
 

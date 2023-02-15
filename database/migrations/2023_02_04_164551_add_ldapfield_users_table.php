@@ -21,6 +21,7 @@ return new class extends Migration
               //local 0 , ldap 1
               $table->unsignedBigInteger('ldap');
               $table->string('guid')->nullable();
+              $table->string('user')->nullable();
               $table->string('domain')->nullable();              
 
               });
