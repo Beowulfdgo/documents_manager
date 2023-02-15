@@ -59,7 +59,7 @@ class LoginRequest extends FormRequest
        //pasar en sh o obtener el archivo de get dd(Auth::user()->password);
       if($ldapConnection->authenticate(Auth::user()->guid,'password'))
        {
-       dd('sucess');
+       //dd('sucess');
        }
      //$ldapConnection->authenticate(Auth::user()->guid,'password');
         RateLimiter::clear($this->throttleKey());

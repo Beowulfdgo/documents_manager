@@ -89,12 +89,28 @@
                         <tbody id="resultados-documentos">
                          
                         </tbody>
+
+                      </table>
+                      <table class="min-w-full text-center">
+                        <thead class="border-b bg-gray-800">
+                        </thead class="border-b">
+                        <tbody>
+                        <tr> 
+                          <th>
+                          <div id="leftbutton"> </div>
+                        </th>
+                        <th>
+                          <div id="rigthbutton"> </div>
+                        </th>
+
+                                       <!-- Botton pag -->
+
+                        </tr>
+                      </tbody>
                       </table>
                     </div>
 
-      <div id="leftbutton"> </div>
-      <div id="rigthbutton"> </div>
-                   <!-- Botton pag -->
+
                   </div>
                 </div>
               </div>
@@ -138,11 +154,11 @@
             //console.log(x.id + ' ' + x.name);
             document.getElementById("resultados-documentos").innerHTML +="<tr class='bg-white border-b'> <td class='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'>"+x.name+"</td></tr>";
          }
-         document.getElementById("leftbutton").innerHTML += "<button type='button' onclick='allfilesbyid(" +'"'+ obj.first_page_url +'"'+ ")' >First Page</button>";
+         document.getElementById("leftbutton").innerHTML += "<button type='button' onclick='allfilesbyid(" +'"'+ obj.first_page_url +'"'+ ")' >« Previous</button>";
          if ( obj.next_page_url == null)
          document.getElementById("rigthbutton").innerHTML = "";
           else 
-          document.getElementById("rigthbutton").innerHTML += "<button type='button' onclick='allfilesbyid(" +'"'+ obj.next_page_url +'"'+ ")' >Next Page</button>";
+          document.getElementById("rigthbutton").innerHTML += "<button type='button' onclick='allfilesbyid(" +'"'+ obj.next_page_url +'"'+ ")' >Next »</button>";
          }
     };
     xhr.send("/" + encodeURIComponent(valor));
@@ -167,11 +183,11 @@
             //console.log(x.id + ' ' + x.name);
             document.getElementById("resultados-documentos").innerHTML +="<tr class='bg-white border-b'> <td class='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'>"+x.name+"</td></tr>";
          }
-         document.getElementById("leftbutton").innerHTML += "<button type='button' onclick='allfilesbyid(" +'"'+ obj.first_page_url +'"'+ ")' >First Page</button>";
+         document.getElementById("leftbutton").innerHTML += "<button type='button' onclick='allfilesbyid(" +'"'+ obj.first_page_url +'"'+ ")' >« Previous</button>";
          if ( obj.next_page_url == null)
          document.getElementById("rigthbutton").innerHTML = "";
           else 
-          document.getElementById("rigthbutton").innerHTML += "<button type='button' onclick='allfilesbyid(" +'"'+ obj.next_page_url +'"'+ ")' >Next Page</button>";
+          document.getElementById("rigthbutton").innerHTML += "<button type='button' onclick='allfilesbyid(" +'"'+ obj.next_page_url +'"'+ ")' >Next »</button>";
        
 
         //document.getElementById("add_to_me").innerHTML +=obj[1].name;
