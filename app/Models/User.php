@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'ldap',
         'guid',
+        'user',
         'departments_id'
     ];
 

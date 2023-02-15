@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'user' => 'cn=read-only-admin,dc=example',
+    'username' =>  env('LDAP_USERNAME', 'cn=read-only-admin,dc=example,dc=com'),
      /*
     |--------------------------------------------------------------------------
     | password

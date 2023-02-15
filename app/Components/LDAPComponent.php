@@ -17,7 +17,7 @@ class  LDAPComponent
     {
         $this->ldapServer = Config::get('ldap.server');
         $this->ldapPort = Config::get('ldap.port');
-        $this->ldapUser = Config::get('ldap.user');
+        $this->ldapUser = Config::get('ldap.username');
         $this->ldapPassword = Config::get('ldap.password');
         $this->ldapBaseDn = Config::get('ldap.base_dn');
     }
@@ -25,18 +25,21 @@ class  LDAPComponent
     public function authenticate($username, $password)
     {
         // Conectar al servidor LDAP
-        $ldap = ldap_connect($this->ldapServer, $this->ldapPort);
+        $ldap = ldap_connect($this->ldapServer, $this->ldapPort) or die("Could not connect to".$this->ldapServer); 
+        if ($ldap){ 
         ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
-        ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
-
+        ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);    
         // Autenticar al usuario en el servidor LDAP
-        $ldapBind = ldap_bind($ldap, $this->ldapUser, $this->ldapPassword);
+        //dd($this->ldapUser);
+        //dd($this->ldapPassword);
+        $ldapBind = ldap_bind($ldap, $this->ldapUser, $this->ldapPassword) ;
         if (!$ldapBind) {
             return false;
         }
-
+       
         // Buscar al usuario en el servidor LDAP
         $search = ldap_search($ldap, $this->ldapBaseDn, "(uid=$username)");
+       // dd($search);
         $entries = ldap_get_entries($ldap, $search);
         if ($entries['count'] != 1) {
             return false;
@@ -47,6 +50,7 @@ class  LDAPComponent
         if (!$ldapBind) {
             return false;
         }
+       }
 
         return true;
     }
