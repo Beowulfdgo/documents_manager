@@ -8,7 +8,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("Creación deparmento") }}
+                    {{ __("Department create") }}
                  <form method="POST" action="{{ route('departments.store') }}"  >
                   @csrf
                   <div class="row">                  
@@ -16,7 +16,7 @@
                     <input type="text" id="name" name="name"><br><br>
                   </div>  
                  <x-primary-button class="ml-4">
-                {{ __('Crear') }}
+                {{ __('Create') }}
                  </x-primary-button>   
                 </div>
                 </form>   

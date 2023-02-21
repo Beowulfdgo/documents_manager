@@ -43,23 +43,33 @@
           <!--  // The user is not login...-->
   
         @endguest
+       
 
-
-
-        <select id="myselect" name="myselect" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-          <option value="1" >Select a Department</option>
-          @foreach ($departments as $department)  
-          <option value="{{ $department->id }}" >{{ $department->name }}</option>
-          @endforeach   
-        </select>
+        <div class="max-w-sm rounded overflow-hidden shadow-lg">
+          <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">The Department</div>
+            <p class="text-gray-700 text-base">
+              
+            </p>
+          </div>
+          <div class="px-6 pt-4 pb-2">
+            <select id="myselect" name="myselect" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option value="1" >Select a Department</option>
+              @foreach ($departments as $department)  
+              <option value="{{ $department->id }}" >{{ $department->name }}</option>
+              @endforeach   
+            </select>
       
-       <div class="container"> 
-        <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="inline-flex items-center rounded-lg bg-blue-700 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+
+
+
+
+        <!-- <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="inline-flex items-center rounded-lg bg-blue-700 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
             Depto <svg class="ml-2 h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-          </button>
+          </button>-->
    
-          <!-- Dropdown menu -->
-          <div id="dropdown" class="z-10 block w-44 divide-y divide-gray-100 rounded bg-white shadow dark:bg-gray-700" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(327px, 70px, 0px);">
+          <!-- Dropdown menu 
+           <div id="dropdown" class="z-10 block w-44 divide-y divide-gray-100 rounded bg-white shadow dark:bg-gray-700" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(327px, 70px, 0px);">
             <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
                 @foreach ($departments as $department)       
               <li>
@@ -71,7 +81,7 @@
               </li>
               @endforeach             
             </ul>
-            </div>
+            </div>-->
 
 
             <div class="flex flex-col">
@@ -110,10 +120,11 @@
                       </table>
                     </div>
 
-
+                   
                   </div>
                 </div>
               </div>
+            </div>
 
            
 

@@ -20,7 +20,7 @@ use App\Http\Controllers\DownloadsController;
 Route::get('/download/{path}/{file}',[UploadController::class,'download'])->name('Upload.download');
 
 
-Route::get('/',[DepartmentController::class,'allDepartments']);
+
 Route::get('/allfilesbyid/{id}',[UploadController::class,'allFilesbyid'])->name('Upload.allFilesbyid');
 //Route::get('/',[UploadController::class,'allFiles']);
 
@@ -35,11 +35,13 @@ Route::delete('/tmp-delete',[UploadController::class,'tmpDelete']);
 //okRoute::get('/dashboard/department/', function () {
 //    return view('layouts.departments.index', ['name' => 'James']);
 //});
-Route::get('/dashboard/department/',[DepartmentController::class,'index']);
-Route::get('/dashboard/department/create',[DepartmentController::class,'create']);
-Route::post('/department/upload', [DepartmentController::class, 'store'])->name('departments.store');
 
-Route::resource('department', DepartmentController::class);
+//Route::get('/dashboard/department/',[DepartmentController::class,'index']);
+//Route::get('/dashboard/department/create',[DepartmentController::class,'create']);
+Route::post('/admin/department/upload', [DepartmentController::class, 'store'])->name('departments.store');
+Route::get('/',[DepartmentController::class,'allDepartments']);
+Route::resource('/department', DepartmentController::class);
+//Route::resource('/admin/department', DepartmentController::class)->name('*','admin.department');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
