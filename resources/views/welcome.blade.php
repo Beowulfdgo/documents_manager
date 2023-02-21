@@ -82,7 +82,9 @@
               @endforeach             
             </ul>
             </div>-->
-
+           
+          </div>
+        </div>
 
             <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -123,8 +125,7 @@
                    
                   </div>
                 </div>
-              </div>
-            </div>
+              
 
            
 
