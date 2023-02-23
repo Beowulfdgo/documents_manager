@@ -22,8 +22,11 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(RolSeeder::class); 
 
-        $this->call([DepartmentTableSeeder::class,UserTableSeeder::class
+        $this->call([DepartmentTableSeeder::class,UserTableSeeder::class,TableldapConexionSeeder::class,CompaniesTableSeeder::class
 
         ]);
+
+        
+
     }
 }

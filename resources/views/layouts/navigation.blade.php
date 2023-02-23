@@ -41,6 +41,12 @@
                         <x-dropdown-link :href="route('department.index')">
                             {{ __('Department') }}
                         </x-dropdown-link>
+                        <x-dropdown-link :href="route('companies.index')">
+                            {{ __('Companies') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('connections-ldap.index')">
+                            {{ __('Connection LDAP') }}
+                        </x-dropdown-link>
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">

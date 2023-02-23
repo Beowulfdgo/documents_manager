@@ -17,11 +17,13 @@
                     <input type="text" id="name" name="name" value="{{ $department->name }}"><br><br>
                   </div>  
                  <x-primary-button class="ml-4">
-                {{ __('Crear') }}
+                {{ __('Update') }}
                  </x-primary-button>   
                 </div>
                 </form>   
                 </div>
+
+
             </div>
         </div>
     </div>

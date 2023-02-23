@@ -41,6 +41,10 @@ Route::delete('/tmp-delete',[UploadController::class,'tmpDelete']);
 Route::post('/admin/department/upload', [DepartmentController::class, 'store'])->name('departments.store');
 Route::get('/',[DepartmentController::class,'allDepartments']);
 Route::resource('/department', DepartmentController::class);
+
+Route::resource('/companies', 'App\Http\Controllers\CompanyController');
+Route::resource('connections-ldap', 'App\Http\Controllers\ConnectionsLdapController');
+
 //Route::resource('/admin/department', DepartmentController::class)->name('*','admin.department');
 
 Route::get('/dashboard', function () {
