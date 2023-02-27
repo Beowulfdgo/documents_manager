@@ -38,7 +38,7 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
                        
-                        @can('Admin')                          
+                        @role('Admin')                          
                         <x-dropdown-link :href="route('department.index')">
                             {{ __('Department') }}
                         </x-dropdown-link>
@@ -48,7 +48,7 @@
                         <x-dropdown-link :href="route('connections-ldap.index')">
                             {{ __('Connection LDAP') }}
                         </x-dropdown-link>
-                        @endcan
+                        @endrole
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
