@@ -24,7 +24,7 @@
                 <tr>
                     <td>{{ $company->name }}</td>
                     <td>{{ $company->description }}</td>
-                    <td>{{ $company->logo }}</td>
+                    <td>{{ $company->file }}</td>
                     <td>
                         <a href="{{ route('companies.edit', $company->id) }}" class="btn btn-primary">Editar</a>
                         <form action="{{ route('companies.destroy', $company->id) }}" method="post" style="display: inline-block">

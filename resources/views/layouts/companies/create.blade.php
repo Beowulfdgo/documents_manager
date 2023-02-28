@@ -5,24 +5,26 @@
             {{ __('Companies') }}
         </h2>
     </x-slot>
+    @vite('resources/assets/filepond/css/filepond.css')
+    @vite('resources/assets/filepond/css/filepond-plugin-image-preview.css')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("Companies create") }}
-        <form action="{{ route('companies.store') }}" method="post">
+        <form method="POST" action="{{ route('companies.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" name="name" id="name" class="form-control">
             </div>
             <div class="form-group">
-                <label for="description">Descripction:</label>
+                <label for="description">Description:</label>
                 <textarea name="description" id="description" class="form-control"></textarea>
             </div>
             <div class="form-group">
                 <label for="description">Logo:</label>
-                <textarea name="logo" id="description" class="form-control"></textarea>
+                <input type="file" name="file" class="form-control">
             </div>
             <div class="form-group">
                 <x-primary-button class="ml-4">
@@ -35,6 +37,24 @@
 </div>
 </div>
 
-
+@vite('resources/assets/filepond/js/filepond-plugin-image-preview.js') 
+@vite('resources/assets/filepond/js/filepond.js') 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+FilePond.registerPlugin(FilePondPluginImagePreview);
+    // Create FilePond object
+const inputElement = document.querySelector('input[name="file"]');
+const pond = FilePond.create(inputElement);
+FilePond.setOptions({
+    server: {
+        process: '/tmp-upload',
+        revert:'/tmp-delete',
+        headers: {
+            'X-CSRF-TOKEN':'{{csrf_token()}}'
+        }
+    }  
+});
+});      
+</script> 
 
 </x-app-layout>

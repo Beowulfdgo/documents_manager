@@ -13,7 +13,7 @@
             </div>
             <div class="form-group">
                 <label for="description">logo:</label>
-                <textarea name="logo" id="logo" class="form-control">{{ $company->logo }}</textarea>
+                <textarea name="file" id="file" class="form-control">{{ $company->file }}</textarea>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-success">Guardar</button>

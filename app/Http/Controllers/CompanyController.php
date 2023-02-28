@@ -27,7 +27,7 @@ class CompanyController extends Controller
         Companies::create([
             'name' => $request->name,
             'description' => $request->description,
-            'logo' => $request->logo
+            'file' => $request->file
         ]);
 
         return redirect()->route('companies.index')->with('success', 'Company created successfully.');
@@ -52,7 +52,7 @@ class CompanyController extends Controller
         $company->update([
             'name' => $request->name,
             'description' => $request->description,
-            'logo' => $request->logo
+            'file' => $request->file
         ]);
 
         return redirect()->route('companies.index')->with('success', 'Company updated successfully.');
