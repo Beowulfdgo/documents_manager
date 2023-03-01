@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Companies;
 use Illuminate\Http\Request;
 use App\Models\Documents_uploads;
 use App\Models\TemporaryFile;
@@ -18,6 +19,26 @@ class UploadController extends Controller
             $filename = time() . '.' . $project_pdf->getClientOriginalExtension();
 
          }
+    }
+
+    public function companystore (Request $request) {
+        //dd($request);
+        $temp_file=TemporaryFile::where('folder',$request->file)->first();
+            if($temp_file){
+                Storage::copy('files/tmp/'.$temp_file->folder. '/'.$temp_file->file,'companies/'.$temp_file->file);
+           Companies::create([
+                'name'=> $request->name,
+                'description'=> $request->description,
+                'file'=>$temp_file->file,
+                'status'=> $request->status
+              
+            ]);
+            Storage::deleteDirectory('files/tmp/'.$temp_file->folder);
+            $temp_file->delete();
+         return redirect('/dashboard/')-> with('sucess','Archivo upload');
+         }
+         return redirect('/dashboard/')-> with('danger','please upload correct file');
+        //dd($request);
     }
 
     public function store (Request $request) {

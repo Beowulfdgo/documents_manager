@@ -23,11 +23,13 @@ class CompanyController extends Controller
         $request->validate([
             'name' => 'required|unique:companies,name',
         ]);
-
+///aqui checando el valor de null  de status
+//if($request->status) {$status=false}
         Companies::create([
             'name' => $request->name,
             'description' => $request->description,
-            'file' => $request->file
+            'file' => $request->file,
+            'status'=> $request->status
         ]);
 
         return redirect()->route('companies.index')->with('success', 'Company created successfully.');
@@ -52,7 +54,8 @@ class CompanyController extends Controller
         $company->update([
             'name' => $request->name,
             'description' => $request->description,
-            'file' => $request->file
+            'file' => $request->file,
+            'status'=> $request->status
         ]);
 
         return redirect()->route('companies.index')->with('success', 'Company updated successfully.');

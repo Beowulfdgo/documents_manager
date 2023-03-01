@@ -11,6 +11,15 @@
                 <label for="description">Descripción:</label>
                 <textarea name="description" id="description" class="form-control">{{ $company->description }}</textarea>
             </div>
+            <fieldset>
+                <legend>Choose Company Active features:</legend>
+            
+                <div>
+                  <input type="checkbox" id="status" name="status" value="{{ $company->status }}" >
+                  <label for="scales">Active</label>
+                </div>
+
+            </fieldset>
             <div class="form-group">
                 <label for="description">logo:</label>
                 <textarea name="file" id="file" class="form-control">{{ $company->file }}</textarea>

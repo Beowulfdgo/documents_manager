@@ -16,6 +16,7 @@
                     <th scope="col" class="text-sm font-medium text-white px-6 py-4">Name</th>
                     <th scope="col" class="text-sm font-medium text-white px-6 py-4">Description</th>
                     <th scope="col" class="text-sm font-medium text-white px-6 py-4">logo</th>
+                    <th scope="col" class="text-sm font-medium text-white px-6 py-4">Active</th>
                     <th scope="col" class="text-sm font-medium text-white px-6 py-4">Actions</th>
                 </tr>
             </thead>
@@ -25,6 +26,7 @@
                     <td>{{ $company->name }}</td>
                     <td>{{ $company->description }}</td>
                     <td>{{ $company->file }}</td>
+                    <td>{{ $company->status }}</td>
                     <td>
                         <a href="{{ route('companies.edit', $company->id) }}" class="btn btn-primary">Editar</a>
                         <form action="{{ route('companies.destroy', $company->id) }}" method="post" style="display: inline-block">

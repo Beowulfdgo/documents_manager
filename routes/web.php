@@ -31,7 +31,7 @@ Route::post('store',[UploadController::class,'store']);
 Route::post('/dashboard/upload', [UploadController::class, 'store'])->name('Upload.store');
 Route::post('/tmp-upload',[UploadController::class,'tmpUpload']);
 Route::delete('/tmp-delete',[UploadController::class,'tmpDelete']);
-
+Route::post('/companystore',[UploadController::class,'companystore'])->name('Upload.companystore');
 //okRoute::get('/dashboard/department/', function () {
 //    return view('layouts.departments.index', ['name' => 'James']);
 //});

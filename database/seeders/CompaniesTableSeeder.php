@@ -20,6 +20,7 @@ class CompaniesTableSeeder extends Seeder
         $companie1->name="Canada";
         $companie1->description="Escuela publica";
         $companie1->file="logo.jpg";
+        $companie1->status="true";
         $companie1->save();
 
     }
