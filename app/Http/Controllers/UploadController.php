@@ -26,6 +26,9 @@ class UploadController extends Controller
         $temp_file=TemporaryFile::where('folder',$request->file)->first();
             if($temp_file){
                 Storage::copy('files/tmp/'.$temp_file->folder. '/'.$temp_file->file,'companies/'.$temp_file->file);
+                if ($request->status === 'true') {
+                    Companies::query()->update(['status' => 'false']);
+                }    
            Companies::create([
                 'name'=> $request->name,
                 'description'=> $request->description,
@@ -33,6 +36,7 @@ class UploadController extends Controller
                 'status'=> $request->status
               
             ]);
+
             Storage::deleteDirectory('files/tmp/'.$temp_file->folder);
             $temp_file->delete();
          return redirect('/companies/')-> with('sucess','Archivo upload');

@@ -41,15 +41,20 @@ class CompanyController extends Controller
             'name' => 'required|unique:companies,name',
         ]);
 ///aqui checando el valor de null  de status
-//if($request->status) {$status=false}
-        Companies::create([
+//if($request->status) {$status=false}         
+
+     Companies::create([
             'name' => $request->name,
             'description' => $request->description,
             'file' => $request->file,
             'status'=> $request->status
         ]);
+
+        if ($request->status === 'true') {
+            Companies::query()->update(['status' => 'false']);
+    }
        // dd(Companies::all()->last()->id);
-        $this->updateStatus($request->status,Companies::all()->last()->id);
+       // $this->updateStatus($request->status,Companies::all()->last()->id);
         return redirect()->route('companies.index')->with('success', 'Company created successfully.');
     }
 
