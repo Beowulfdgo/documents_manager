@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Departments;
 use App\Models\Documents_uploads;
+use App\Models\Companies;
 use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
@@ -70,10 +71,13 @@ class DepartmentController extends Controller
         //$documents->departments;
         $departments = Departments::has('Documents_uploads')->get(); 
         //$documents = \App\Models\documents_uploads::with('departments')->get();
+        $company = Companies::where('status', 'true')->get();
+        //$company = Companies::first();
+         $company=$company[0]; 
 
 
+        return view('welcome',['departments'=>$departments,'company'=>$company,'documentsbydepartment'=>$documentsbydepartment]); 
 
-        return view('welcome',['departments'=>$departments,'documentsbydepartment'=>$documentsbydepartment]); 
            }
     public static function department($id) {
             $department = Departments::find($id);

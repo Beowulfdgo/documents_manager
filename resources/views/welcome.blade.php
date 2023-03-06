@@ -46,6 +46,7 @@
        
 
         <div class="max-w-sm rounded overflow-hidden shadow-lg">
+          <img src="{{ Storage::url("/companies/".$company->file) }}" alt="Imagen"> 
           <div class="px-6 py-4">
             <div class="font-bold text-xl mb-2">The Department</div>
             <p class="text-gray-700 text-base">
