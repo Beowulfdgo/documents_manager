@@ -15,8 +15,12 @@
                 <legend>Choose Company Active features:</legend>
             
                 <div>
-                  <input type="checkbox" id="status" name="status" value="{{ $company->status }}" >
+                 <!-- <input type="checkbox" id="status" name="status" value="{{ $company->status }}" >-->
+                 <select name="status" id="status" class="form-control">
+                  <option value="true" {{ $company->status ? 'selected' : '' }}>Active</option>
+                  <option value="false" {{ !$company->status ? 'selected' : '' }}>Inactive</option>
                   <label for="scales">Active</label>
+                </select>
                 </div>
 
             </fieldset>

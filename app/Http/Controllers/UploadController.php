@@ -35,9 +35,9 @@ class UploadController extends Controller
             ]);
             Storage::deleteDirectory('files/tmp/'.$temp_file->folder);
             $temp_file->delete();
-         return redirect('/dashboard/')-> with('sucess','Archivo upload');
+         return redirect('/companies/')-> with('sucess','Archivo upload');
          }
-         return redirect('/dashboard/')-> with('danger','please upload correct file');
+         return redirect('/companies/')-> with('danger','please upload correct file');
         //dd($request);
     }
 

@@ -6,7 +6,24 @@ use Illuminate\Http\Request;
 use App\Models\Companies;
 
 class CompanyController extends Controller
-{
+{ 
+    public  function updateStatus($status,$id)
+    {  //dd($id);
+        $company = Companies::find($id);
+
+        if ($company) {
+            // Si el nuevo estado es "true", desactivamos todos los demás registros primero
+            if ($status== 'true') {
+                Companies::where('id', '!=', $id)->update(['status' => 'false']);
+            }
+
+            // Actualizamos el estado de la empresa seleccionada
+            $company->status = $status;
+            $company->save();
+        }
+
+     
+    }
     public function index()
     {
         $companies = Companies::all();
@@ -31,7 +48,8 @@ class CompanyController extends Controller
             'file' => $request->file,
             'status'=> $request->status
         ]);
-
+       // dd(Companies::all()->last()->id);
+        $this->updateStatus($request->status,Companies::all()->last()->id);
         return redirect()->route('companies.index')->with('success', 'Company created successfully.');
     }
 
@@ -57,6 +75,8 @@ class CompanyController extends Controller
             'file' => $request->file,
             'status'=> $request->status
         ]);
+        //dd(Companies::find($company->id));
+        $this->updateStatus($request->status,$company->id);
 
         return redirect()->route('companies.index')->with('success', 'Company updated successfully.');
     }

@@ -26,7 +26,11 @@
                 <legend>Choose Company Active features:</legend>
             
                 <div>
-                  <input type="checkbox" id="status" name="status" value="true" onclick="cat_check()" checked>
+                    <select name="status" id="status" class="form-control">
+                        <option value="true">Active</option>
+                        <option value="false">Inactive</option>
+                    </select>     
+                 <!-- <input type="checkbox" id="status" name="status" value="true" onclick="cat_check()" checked>-->
                   <label id="text" style="display:inline">Active</label>
                 </div>
 
