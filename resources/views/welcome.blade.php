@@ -143,6 +143,22 @@
     window.blade.valor = valor;
     });
   </script>
+  <script>
+    function openPdf(ruta) {
+  // Obtener la URL del archivo PDF en la carpeta `storage/app/public`
+  
+  
+  var ruta='{{ asset("storage/post/1/1678130161.lya2 UI.pdf") }}'
+  //const pdfUrl = '{{ asset("storage/'+ruta+'") }}';
+  const pdfUrl = ruta;
+  //const pdfUrl = '{{ asset("storage") }}/' + path;
+  // Abrir una nueva ventana del navegador con la URL del archivo PDF
+  const pdfWindow = window.open(pdfUrl, '_blank');
+  pdfWindow.focus();
+}
+
+  </script>
+
 
 <script>
   document.getElementById("myselect").addEventListener("change", function() {
@@ -161,7 +177,7 @@
         document.getElementById("rigthbutton").innerHTML = "";
         for (x of obj.data) {
             //console.log(x.id + ' ' + x.name);
-            document.getElementById("resultados-documentos").innerHTML +="<tr class='bg-white border-b'> <td class='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'>"+x.name+"</td></tr>";
+            document.getElementById("resultados-documentos").innerHTML +="<tr class='bg-white border-b'> <td class='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'> <button type='button' onclick='openPdf()'>"+x.name+"</button></td></tr>";
          }
          document.getElementById("leftbutton").innerHTML += "<button type='button' onclick='allfilesbyid(" +'"'+ obj.first_page_url +'"'+ ")' >« Previous</button>";
          if ( obj.next_page_url == null)
