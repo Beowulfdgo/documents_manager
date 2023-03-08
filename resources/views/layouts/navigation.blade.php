@@ -38,7 +38,11 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
                        
-                        @role('Admin')                          
+                        @role('Admin')
+                        
+                         <x-dropdown-link :href="route('register')">
+                            {{ __('Register') }}
+                        </x-dropdown-link>
                         <x-dropdown-link :href="route('department.index')">
                             {{ __('Department') }}
                         </x-dropdown-link>

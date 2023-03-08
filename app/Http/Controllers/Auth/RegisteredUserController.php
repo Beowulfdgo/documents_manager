@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Departments;
+use App\Models\Connectionsldaps;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -25,8 +26,12 @@ class RegisteredUserController extends Controller
         //$departments = Departments::all();
         $departments = DB::table('departments')->get();
         //dd($departments);
-        return view('auth.register',['departments'=>$departments]);
+        $ldapconnections = DB::table('connectionsldaps')->get();
+        return view('auth.register',['departments'=>$departments,'ldapconnections'=>$ldapconnections]);
     }
+
+   
+
 
     /**
      * Handle an incoming registration request.
@@ -39,12 +44,16 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'user' => ['required', 'string', 'max:255'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'departments_id'=> $request->departments_id,
+            'ldap'=>$request->ldap,
+            'user'=>$request->user,
+            'guid'=>$request->guid,
             'password' => Hash::make($request->password),
         ]);
 

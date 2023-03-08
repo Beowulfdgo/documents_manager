@@ -35,7 +35,8 @@ class RolSeeder extends Seeder
         $permission = Permission::create(['name' => 'connections-ldap.edit'])->syncRoles($role1);
         $permission = Permission::create(['name' => 'connections-ldap.destroy'])->syncRoles($role1);
 
-        
+        $permission = Permission::create(['name' => 'register'])->syncRoles($role1);
+
         //dashboard uploadfile
         $permission = Permission::create(['name' => 'dashboard'])->syncRoles($role2);
         

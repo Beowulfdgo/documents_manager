@@ -24,6 +24,43 @@
                 <option value="{{$category->id}}" > {{$category->name}}</option> @endforeach
             </select>    
             </div>
+                    <!-- ldap Info -->
+        <div class="mt-4">
+            <x-input-label for="ldapconnections_id" :value="__('Ldap')" />
+            <select id="ldap" name="ldap">
+                @foreach($ldapconnections as $ldapconnection)
+                <option value="{{$ldapconnection->id}}" > {{$ldapconnection->name}}</option> @endforeach
+            </select>    
+            </div>
+
+            <!-- user ldap -->
+        <div class="mt-4">
+            <x-input-label for="user" :value="__('User Ldap')" />
+            <x-text-input id="user" class="block mt-1 w-full" type="email" name="user"  required />
+
+        </div>
+                            <!-- ldap Info -->
+        <div class="mt-4">
+            <x-input-label for="ldapconnections_id" :value="__('Ldap')" />
+            <select id="ldap" name="ldap">
+                @foreach($ldapconnections as $ldapconnection)
+                <option value="{{$ldapconnection->id}}" > {{$ldapconnection->name}}</option> @endforeach
+            </select>    
+            </div>
+
+            <!-- guid Info -->
+            <div class="mt-4">
+            <x-input-label for="guid_id" :value="__('Guid')" />
+            <select id="guid" name="guid">
+            <option value="orclguid" >WebLogic Authentication provider </option> 
+            <option value="orclguid" >Oracle Internet Directory Authentication provider</option> 
+            <option value="orclguid" >Oracle Virtual Directory Authentication provider</option> 
+            <option value="objectguid" >Active Directory Authentication provider</option> 
+            <option value="nsuniqueid" >iPlanet Authentication provider </option> 
+            <option value="guid" >Novell Authentication provider </option> 
+            <option value="entryuuid" >Open LDAP Authentication provider </option> 
+            </select>
+            </div>
 
         <!-- Password -->
         <div class="mt-4">

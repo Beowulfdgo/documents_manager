@@ -40,10 +40,10 @@ Route::post('/companystore',[UploadController::class,'companystore'])->name('Upl
 //Route::get('/dashboard/department/create',[DepartmentController::class,'create']);
 Route::post('/admin/department/upload', [DepartmentController::class, 'store'])->name('departments.store');
 Route::get('/',[DepartmentController::class,'allDepartments']);
-Route::resource('/department', DepartmentController::class);
+Route::resource('/department', DepartmentController::class)->middleware(['auth', 'verified']);
 
-Route::resource('/companies', 'App\Http\Controllers\CompanyController');
-Route::resource('connections-ldap', 'App\Http\Controllers\ConnectionsLdapController');
+Route::resource('/companies', 'App\Http\Controllers\CompanyController')->middleware(['auth', 'verified']);
+Route::resource('connections-ldap', 'App\Http\Controllers\ConnectionsLdapController')->middleware(['auth', 'verified']);
 
 //Route::resource('/admin/department', DepartmentController::class)->name('*','admin.department');
 
@@ -57,6 +57,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 });
+
+Route::get('register','App\Http\Controllers\Auth\RegisteredUserController@create')
+                ->name('register')->middleware(['auth', 'verified']);
+
+    Route::post('register','App\Http\Controllers\Auth\RegisteredUserController@store')->middleware(['auth', 'verified']);
+
 
 
 

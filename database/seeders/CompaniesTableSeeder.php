@@ -17,8 +17,8 @@ class CompaniesTableSeeder extends Seeder
     {
         //
         $companie1 = new Companies;
-        $companie1->name="Canada";
-        $companie1->description="Escuela publica";
+        $companie1->name="Peñoles";
+        $companie1->description="Empresa publica";
         $companie1->file="logo.png";
         $companie1->status="true";
         $companie1->save();
