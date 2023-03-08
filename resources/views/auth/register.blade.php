@@ -36,7 +36,7 @@
             <!-- user ldap -->
         <div class="mt-4">
             <x-input-label for="user" :value="__('User Ldap')" />
-            <x-text-input id="user" class="block mt-1 w-full" type="email" name="user"  required />
+            <x-text-input id="user" class="block mt-1 w-full"  name="user"  required />
 
         </div>
                             <!-- ldap Info -->
