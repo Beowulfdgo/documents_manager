@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DownloadsController;
 
@@ -41,6 +42,7 @@ Route::post('/companystore',[UploadController::class,'companystore'])->name('Upl
 Route::post('/admin/department/upload', [DepartmentController::class, 'store'])->name('departments.store');
 Route::get('/',[DepartmentController::class,'allDepartments']);
 Route::resource('/department', DepartmentController::class)->middleware(['auth', 'verified']);
+Route::resource('/user', UserController::class)->middleware(['auth', 'verified']);
 
 Route::resource('/companies', 'App\Http\Controllers\CompanyController')->middleware(['auth', 'verified']);
 Route::resource('connections-ldap', 'App\Http\Controllers\ConnectionsLdapController')->middleware(['auth', 'verified']);
