@@ -1,4 +1,9 @@
-<x-guest-layout>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -39,14 +44,7 @@
             <x-text-input id="user" class="block mt-1 w-full"  name="user"  required />
 
         </div>
-                            <!-- ldap Info -->
-        <div class="mt-4">
-            <x-input-label for="ldapconnections_id" :value="__('Ldap')" />
-            <select id="ldap" name="ldap">
-                @foreach($ldapconnections as $ldapconnection)
-                <option value="{{$ldapconnection->id}}" > {{$ldapconnection->name}}</option> @endforeach
-            </select>    
-            </div>
+
 
             <!-- guid Info -->
             <div class="mt-4">
@@ -95,4 +93,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-app-layout>

@@ -88,13 +88,8 @@
                   <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="overflow-hidden">
                       <table  class="min-w-full text-center">
-                        <thead class="border-b bg-gray-800">
-                          <tr>
-                            <th scope="col" class="text-sm font-medium text-white px-6 py-4">
-                              File
-                            </th>
-                          </tr>
-                        </thead class="border-b">
+                        <thead id="thead-resultados-documentos">                          
+                        </thead >
                         <tbody id="resultados-documentos">
                          
                         </tbody>
@@ -177,6 +172,8 @@
         document.getElementById("resultados-documentos").innerHTML = "";
         document.getElementById("leftbutton").innerHTML= "";
         document.getElementById("rigthbutton").innerHTML = "";
+
+      
         for (x of obj.data) {
             //console.log(x.id + ' ' + x.name);
             document.getElementById("resultados-documentos").innerHTML +="<tr class='bg-white border-b'> <td class='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'> <button type='button' onclick='openPdf("+'"'+x.path+x.departments_id+'/'+x.name+'"'+")'>"+x.name+"</button></td></tr>";
