@@ -57,7 +57,7 @@ class UserTableSeeder extends Seeder
         ])->assignRole('Filer');
 
         User::create([
-            'name'=>"Jose Antonio  Flores Lara",
+            'name'=>"Jose Antonio Flores Lara",
             'email'=>"antonioflores30@hotmail.com",
             'password'=>bcrypt("password"),
             'ldap'=>0,

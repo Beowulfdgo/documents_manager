@@ -55,12 +55,19 @@ class LoginRequest extends FormRequest
         
       //dd("Here");
        //ldap connection
+       if(Auth::user()->ldap){ 
+        //dd(Auth::user()->guid);
        $ldapConnection = new LDAPComponent();
        //pasar en sh o obtener el archivo de get dd(Auth::user()->password);
-      if($ldapConnection->authenticate(Auth::user()->guid,'password'))
-       {
-       //dd('sucess');
-       }
+        if($ldapConnection->authenticate(Auth::user()->guid,'password'))
+        {
+        dd('sucess');
+        }
+        else 
+        {
+            dd("error ldap connection , wrong credentials o ldap server connection error");
+        }
+      }
      //$ldapConnection->authenticate(Auth::user()->guid,'password');
         RateLimiter::clear($this->throttleKey());
     }

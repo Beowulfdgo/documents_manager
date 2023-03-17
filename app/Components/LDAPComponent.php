@@ -26,6 +26,7 @@ class  LDAPComponent
     {
         // Conectar al servidor LDAP
         $ldap = ldap_connect($this->ldapServer, $this->ldapPort) or die("Could not connect to".$this->ldapServer); 
+        //dd($ldap);
         if ($ldap){ 
         ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
         ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);    

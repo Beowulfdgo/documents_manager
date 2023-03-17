@@ -2,6 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         @vite(['resources/css/app.css','resources/js/app.js'])
+        @vite(['public/theme/dist/assets/js/widgets.bundle.js','public/theme/dist/assets/plugins/custom/datatables/datatables.bundle.js','public/theme/dist/assets/css/style.bundle.css','public/theme/dist/assets/js/scripts.bundle.js'])
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
