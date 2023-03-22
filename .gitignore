@@ -84,3 +84,5 @@ Homestead.json
 /public/.htaccess
 /storage
 storage/*.key
+#public deployment
+/public/build/
