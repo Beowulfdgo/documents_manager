@@ -58,10 +58,10 @@ class LoginRequest extends FormRequest
        if(Auth::user()->ldap){ 
         //dd(Auth::user()->guid);
        $ldapConnection = new LDAPComponent();
-       //pasar en sh o obtener el archivo de get dd(Auth::user()->password);
+       //pasar en sh o obtener el archivo de get dd(Auth::user()->password) agregar a lina 48;
         if($ldapConnection->authenticate(Auth::user()->guid,'password'))
         {
-        dd('sucess');
+        //dd('sucess');
         }
         else 
         {

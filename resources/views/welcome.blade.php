@@ -207,7 +207,7 @@
         document.getElementById("rigthbutton").innerHTML = "";
         for (x of obj.data) {
             //console.log(x.id + ' ' + x.name);
-            document.getElementById("resultados-documentos").innerHTML +="<tr class='bg-white border-b'> <td class='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'>"+x.name+"</td></tr>";
+            document.getElementById("resultados-documentos").innerHTML +="<tr class='bg-white border-b'> <td class='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'> <button type='button' onclick='openPdf("+'"'+x.path+x.departments_id+'/'+x.name+'"'+")'>"+x.name+"</button></td></tr>";
          }
          document.getElementById("leftbutton").innerHTML += "<button type='button' onclick='allfilesbyid(" +'"'+ obj.first_page_url +'"'+ ")' >« Previous</button>";
          if ( obj.next_page_url == null)
